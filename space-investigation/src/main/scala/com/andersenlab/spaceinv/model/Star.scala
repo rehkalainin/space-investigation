@@ -5,7 +5,7 @@ import java.util.UUID
 object StarType extends Enumeration {
   type StarType = Value
 
-  val SuperNova, RedGiant, SunLike = Value
+  val SuperNova, WhiteDwarf, RedGiant, BlackHole = Value
 }
 
 case class Star(id: UUID,
