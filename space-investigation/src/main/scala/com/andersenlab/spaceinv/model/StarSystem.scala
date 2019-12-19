@@ -8,7 +8,4 @@ import slick.model.Table
 case class StarSystem(id: UUID,
                       name: String)
 
-class StarSystemTable(tag:Tag) extends Table [(UUID,String)](tag,"StarSystem"){
-
-}
 

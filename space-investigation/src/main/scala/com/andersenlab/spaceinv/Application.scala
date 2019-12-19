@@ -7,6 +7,8 @@ import scala.concurrent.ExecutionContext.Implicits.global
 object Application {
   def main(args: Array[String]): Unit = {
     println("Hello, space!")
+    val db = Database.forConfig("mydb")
+    println(db.source.maxConnections.get)
 
   }
 }
