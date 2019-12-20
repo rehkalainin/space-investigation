@@ -2,7 +2,7 @@ package com.andersenlab.spaceinv.model
 
 import java.util.UUID
 
-import slick.jdbc.PostgresProfile.api._
+import ExtPostgresProfile.api._
 
 case class StarSystem(id: UUID,
                       name: String)
@@ -14,4 +14,6 @@ class StarSystemTable(tag:Tag) extends Table[StarSystem](tag, "StarSystemTable")
   def * = (id,name).mapTo[StarSystem]
 }
 
-
+object StarSystemTable {
+  val query = TableQuery[StarSystemTable]
+}

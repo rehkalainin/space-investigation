@@ -1,6 +1,6 @@
 package com.andersenlab.spaceinv
 import com.andersenlab.spaceinv.model.StarSystem
-import slick.jdbc.PostgresProfile.api._
+import ExtPostgresProfile.api._
 
 import scala.concurrent.{Await, Future}
 import scala.concurrent.duration._

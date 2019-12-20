@@ -1,7 +1,7 @@
 package com.andersenlab.spaceinv.model
 
 import java.util.UUID
-import slick.jdbc.PostgresProfile.api._
+import ExtPostgresProfile.api._
 
 object StarType extends Enumeration {
   type StarType = Value
@@ -20,5 +20,9 @@ class StarTable (tag:Tag) extends Table[Star](tag, "STAR"){
   def name = column[String]("STAR_NAME")
   def starSystemId = column[UUID]("STARSYSTEM_ID")
   def characteristics = column[PhysicalCharacteristics]("CHARACTERISTICS")
-  //def type = column[StarType]()
+  def `type` = column[StarType.StarType]("STAR_TYPE")
+}
+
+object StarTable {
+  val query = TableQuery[StarTable]
 }
