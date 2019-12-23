@@ -6,6 +6,8 @@ object Dependencies {
   val slickVerion = "3.3.1"
   val slf4jVersion = "1.7.26"
   val postgresDriverVersion = "42.2.5"
+  val akkaHttpVersion = "10.1.11"
+  val akkaStream = "2.5.26"
 
   val scalactic = "org.scalactic" %% "scalactic" % scalatestVersion
   val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion
@@ -15,4 +17,6 @@ object Dependencies {
   val slickHikari = "com.typesafe.slick" %% "slick-hikaricp" % slickVerion
   val slf4jNop = "org.slf4j" % "slf4j-nop" % slf4jVersion
   val postgresDriver = "org.postgresql" % "postgresql" % postgresDriverVersion
+  val akkaHttp = "com.typesafe.akka" %% "akka-http"   % akkaHttpVersion
+  val akkaStreams = "com.typesafe.akka" %% "akka-stream" % akkaStream
 }

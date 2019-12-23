@@ -18,8 +18,10 @@ lazy val `space-investigation` = project.in(file("space-investigation"))
       slick,
       slickHikari,
       slf4jNop,
-      postgresDriver
-      // todo: add akka-http, circe etc.
+      postgresDriver,
+      akkaHttp,
+      akkaStreams
+      // todo: add circe etc.
     )
   )
 
