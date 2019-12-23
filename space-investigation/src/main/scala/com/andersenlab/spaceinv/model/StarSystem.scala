@@ -15,5 +15,5 @@ class StarSystemTable(tag:Tag) extends Table[StarSystem](tag, "StarSystemTable")
 }
 
 object StarSystemTable {
-  val query = TableQuery[StarSystemTable]
+  val starSystem = TableQuery[StarSystemTable]
 }
