@@ -41,6 +41,9 @@ object Application {
         )
       )
 
+      val setupFuture = db.run(setup)
+
+
     } finally db.close
   }
 }
