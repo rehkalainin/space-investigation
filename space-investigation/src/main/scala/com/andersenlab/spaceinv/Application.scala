@@ -1,52 +1,17 @@
 package com.andersenlab.spaceinv
-import java.util.UUID
 
-import com.andersenlab.spaceinv.model.{Coordinates, Mass, PhysicalCharacteristics, Radius, Star, StarSystem, StarSystemTable, StarTable, StarType}
-import com.andersenlab.spaceinv.model.ExtPostgresProfile.api._
-
-import scala.concurrent.{Await, Future}
-import scala.concurrent.duration._
-import scala.concurrent.ExecutionContext.Implicits.global
+import com.andersenlab.spaceinv.modules.CoreExecutionProfile._
+import akka.http.scaladsl.Http
+import com.andersenlab.spaceinv.modules.DbSetup
 
 object Application {
   def main(args: Array[String]): Unit = {
-    println("Hello, space!")
+    DbSetup.setup()
 
+    val binding = Http().bindAndHandle(WebRoutes.route, interface = "0.0.0.0", port = 8080)
 
-    val db = Database.forConfig("mydb")
-    try {
-      println("quantity connections "+ db.source.maxConnections.get)
-
-      val starSystemQuery = StarSystemTable.starSystem
-      val starQuery = StarTable.star
-
-      val STARSYSTEMID_SOLAR = UUID.randomUUID()
-      val STARSYSTEMID_SIRIUS = UUID.randomUUID()
-      val STARSYSTEMID_ALFACENTAVRA = UUID.randomUUID()
-
-      val setup = DBIO.seq(
-        (starSystemQuery.schema ++ starQuery.schema).create,
-
-        starSystemQuery += StarSystem(STARSYSTEMID_SOLAR, "SolarSystem"),
-        starSystemQuery += StarSystem(STARSYSTEMID_SIRIUS, "Syrius"),
-        starSystemQuery += StarSystem(STARSYSTEMID_ALFACENTAVRA, "AlfaCentavra"),
-
-
-        starQuery ++= Seq(
-          Star(UUID.randomUUID(), "Solar", STARSYSTEMID_SOLAR, PhysicalCharacteristics(Mass(2000), Radius(10000), Coordinates(2.1, 2.2, 2.3)), StarType.LikeSun),
-          Star(UUID.randomUUID(), "SiriusA", STARSYSTEMID_SIRIUS, PhysicalCharacteristics(Mass(4000), Radius(15000), Coordinates(3.1, 4.2, 5.3)), StarType.LikeSun),
-          Star(UUID.randomUUID(), "SiriusB", STARSYSTEMID_SIRIUS, PhysicalCharacteristics(Mass(5000), Radius(20000), Coordinates(4.1, 5.2, 6.3)), StarType.LikeSun),
-          Star(UUID.randomUUID(), "AlfaA", STARSYSTEMID_ALFACENTAVRA, PhysicalCharacteristics(Mass(7000), Radius(80000), Coordinates(5.1, 7.2, 7.3)), StarType.LikeSun),
-
-        )
-      )
-
-      val setupFuture = db.run(setup)
-      Await.result(setupFuture,2.second)
-
-
-
-
-    } finally db.close
+    actorSystem.registerOnTermination {
+      binding.flatMap(_.unbind())
+    }
   }
 }

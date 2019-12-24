@@ -1,5 +1,6 @@
-package com.andersenlab.spaceinv.model
+package com.andersenlab.spaceinv.dao
 
+import com.andersenlab.spaceinv.model.{Mass, Radius, StarType}
 import slick.jdbc.PostgresProfile
 
 object ExtPostgresProfile extends PostgresProfile {

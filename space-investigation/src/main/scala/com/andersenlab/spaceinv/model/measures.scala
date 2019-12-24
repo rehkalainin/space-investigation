@@ -1,5 +1,5 @@
 package com.andersenlab.spaceinv.model
-import ExtPostgresProfile.api._
+import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 
 case class Mass(kilos: Double) extends AnyVal
 

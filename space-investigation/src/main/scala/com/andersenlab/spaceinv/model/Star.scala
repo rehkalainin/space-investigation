@@ -1,7 +1,7 @@
 package com.andersenlab.spaceinv.model
 
 import java.util.UUID
-import ExtPostgresProfile.api._
+import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 
 object StarType extends Enumeration {
   type StarType = Value
