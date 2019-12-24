@@ -42,6 +42,9 @@ object Application {
       )
 
       val setupFuture = db.run(setup)
+      Await.result(setupFuture,2.second)
+
+
 
 
     } finally db.close
