@@ -8,7 +8,7 @@ case class StarSystem(id: UUID,
                       name: String)
 
 class StarSystemTable(tag:Tag) extends Table[StarSystem](tag, "StarSystemTable"){
-  def id= column[UUID]("SS_ID", O.PrimaryKey, O.AutoInc)
+  def id= column[UUID]("SS_ID", O.PrimaryKey)
   def name= column[String]("SS_NAME")
 
   def * = (id,name).mapTo[StarSystem]

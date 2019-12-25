@@ -1,10 +1,14 @@
 package com.andersenlab.spaceinv.dao
 
 import java.util.UUID
+
 import ExtPostgresProfile.api._
 import cats.data.NonEmptyList
 import com.andersenlab.spaceinv.api.model.{PlanetView, StarSystemView, StarView}
-import com.andersenlab.spaceinv.model.{PlanetTable, StarSystemTable, StarTable}
+import com.andersenlab.spaceinv.model.{PlanetTable, StarSystem, StarSystemTable, StarTable}
+import slick.dbio.Effect
+import slick.sql.SqlAction
+
 import scala.concurrent.ExecutionContext
 
 trait StarSystemDao {
@@ -14,8 +18,10 @@ trait StarSystemDao {
 }
 
 class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
+
   override def findStarSystem(starSystemId: UUID): DBIO[Option[StarSystemView]] = {
-    val starSystemDBIO = StarSystemTable
+
+    val starSystemDBIO: SqlAction[Option[StarSystem], NoStream, Effect.Read] = StarSystemTable
       .starSystem
       .filter(_.id === starSystemId.bind)
       .result.headOption

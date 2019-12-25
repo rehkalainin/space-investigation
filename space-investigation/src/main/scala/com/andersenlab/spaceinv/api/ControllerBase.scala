@@ -6,5 +6,5 @@ import akka.http.scaladsl.server.Directives
 trait ControllerBase extends Directives {
   def route: Route
 
-  val apiV1 = path("api" / "v1")
+  val apiV1 = pathPrefix("api" / "v1")
 }

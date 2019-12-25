@@ -5,6 +5,7 @@ import akka.http.scaladsl.server.Route
 import com.andersenlab.spaceinv.api.service.StarSystemService
 
 class StarSystemController(starSystemService: StarSystemService) extends ControllerBase {
+
   // todo:
 
   // GET view planet: PlanetView
@@ -19,7 +20,7 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
   // same for StarSystem
   def route: Route = {
     apiV1 {
-      path("systems") {
+      pathPrefix("systems") {
         path("list") {
           pathEndOrSingleSlash {
             listAll()
@@ -36,7 +37,7 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
   private def findStarSystemRoute(starSystemId: UUID): Route = {
     get {
       onSuccess(starSystemService.findStarSystem(starSystemId)) {
-        case None             => complete("NOT FOUND")
+        case None => complete("NOT FOUND")
         case Some(starSystem) => complete(starSystem.toString)
       }
     }

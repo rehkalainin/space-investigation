@@ -6,9 +6,9 @@ import com.andersenlab.spaceinv.modules.DbSetup
 
 object Application {
   def main(args: Array[String]): Unit = {
-    DbSetup.setup()
+    //DbSetup.setup()
 
-    val binding = Http().bindAndHandle(WebRoutes.route, interface = "0.0.0.0", port = 8080)
+    val binding = Http().bindAndHandle(WebRoutes.route, interface = "localhost", port = 8080)
 
     actorSystem.registerOnTermination {
       binding.flatMap(_.unbind())
