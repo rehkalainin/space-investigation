@@ -10,7 +10,6 @@ case class PlanetView(id: UUID,
 
 object PlanetView {
   def fromPlanet(planet: Planet): PlanetView = {
-    // todo: implement
-    ???
+PlanetView(planet.id, planet.name, planet.coordinates, planet.characteristics)
   }
 }

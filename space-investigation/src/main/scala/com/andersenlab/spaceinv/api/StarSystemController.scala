@@ -1,8 +1,13 @@
 package com.andersenlab.spaceinv.api
 
 import java.util.UUID
+import scala.concurrent.Future
+
+import akka.Done
 import akka.http.scaladsl.server.Route
 import com.andersenlab.spaceinv.api.service.StarSystemService
+import com.andersenlab.spaceinv.model.StarSystem
+
 
 class StarSystemController(starSystemService: StarSystemService) extends ControllerBase {
 
@@ -17,6 +22,7 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
 
   // same for Star
 
+
   // same for StarSystem
   def route: Route = {
     apiV1 {
@@ -29,6 +35,9 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
           pathEndOrSingleSlash {
             findStarSystemRoute(starSystemId)
           }
+        } ~ pathEndOrSingleSlash {
+          saveStarSystemRoute() ~
+            updateStarSystemRoute()
         }
       }
     }
@@ -47,6 +56,28 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
     get {
       onSuccess(starSystemService.listAll()) { list =>
         complete(list mkString "\n")
+      }
+    }
+  }
+
+  private def saveStarSystemRoute(): Route = {
+    post {
+      entity(as[StarSystem]) {
+        starSystem =>
+          onSuccess(starSystemService.saveStarSystem(starSystem)) {
+            complete("created starsystem ")
+          }
+      }
+    }
+  }
+
+  def updateStarSystemRoute(): Route = {
+    put {
+      entity(as[StarSystem]) {
+        starSystem =>
+          onSuccess(starSystemService.updateStarSystem(starSystem)){
+            complete("update starsystem")
+          }
       }
     }
   }
