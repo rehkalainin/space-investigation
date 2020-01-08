@@ -4,7 +4,7 @@ import com.andersenlab.spaceinv.api.service.StarSystemServiceImpl
 import DbSetup.db
 import com.andersenlab.spaceinv.dao.StarSystemDaoImpl
 import CoreExecutionProfile.executionContext
-import com.andersenlab.spaceinv.api.StarSystemController
+import com.andersenlab.spaceinv.api.controller.StarSystemController
 
 object StarSystemModule {
   lazy val starSystemDao = new StarSystemDaoImpl

@@ -1,9 +1,7 @@
-package com.andersenlab.spaceinv.api
+package com.andersenlab.spaceinv.api.controller
 
 import java.util.UUID
-import scala.concurrent.Future
 
-import akka.Done
 import akka.http.scaladsl.server.Route
 import com.andersenlab.spaceinv.api.service.StarSystemService
 import com.andersenlab.spaceinv.model.StarSystem
@@ -11,19 +9,6 @@ import com.andersenlab.spaceinv.model.StarSystem
 
 class StarSystemController(starSystemService: StarSystemService) extends ControllerBase {
 
-  // todo:
-
-  // GET view planet: PlanetView
-
-  // POST create planet: Planet
-
-  // PUT updated planet: Planet
-
-
-  // same for Star
-
-
-  // same for StarSystem
   def route: Route = {
     apiV1 {
       pathPrefix("systems") {
@@ -75,7 +60,7 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
     put {
       entity(as[StarSystem]) {
         starSystem =>
-          onSuccess(starSystemService.updateStarSystem(starSystem)){
+          onSuccess(starSystemService.updateStarSystem(starSystem)) {
             complete("update starsystem")
           }
       }

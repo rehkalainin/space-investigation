@@ -3,7 +3,7 @@ package com.andersenlab.spaceinv.dao
 import java.util.UUID
 
 import cats.data.NonEmptyList
-import com.andersenlab.spaceinv.api.model.{PlanetView, StarSystemView, StarView}
+import com.andersenlab.spaceinv.api.modelView.{PlanetView, StarSystemView, StarView}
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 import com.andersenlab.spaceinv.model.{PlanetTable, StarSystem, StarSystemTable, StarTable}
 import slick.dbio.Effect

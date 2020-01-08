@@ -2,15 +2,12 @@ package com.andersenlab.spaceinv.api.service
 
 import java.util.UUID
 
-import akka.Done
-import akka.http.scaladsl.server.directives.OnSuccessMagnet
-import com.andersenlab.spaceinv.api.model.StarSystemView
-
-import scala.concurrent.{Await, ExecutionContext, Future}
-import scala.concurrent.duration._
+import com.andersenlab.spaceinv.api.modelView.StarSystemView
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api.Database
 import com.andersenlab.spaceinv.dao.StarSystemDao
 import com.andersenlab.spaceinv.model.StarSystem
+
+import scala.concurrent.{ExecutionContext, Future}
 
 trait StarSystemService {
   def updateStarSystem(starSystem: StarSystem): Future[Unit]

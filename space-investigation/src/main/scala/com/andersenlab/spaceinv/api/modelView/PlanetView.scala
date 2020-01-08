@@ -1,4 +1,4 @@
-package com.andersenlab.spaceinv.api.model
+package com.andersenlab.spaceinv.api.modelView
 
 import java.util.UUID
 import com.andersenlab.spaceinv.model.{Coordinates, PhysicalCharacteristics, Planet}
