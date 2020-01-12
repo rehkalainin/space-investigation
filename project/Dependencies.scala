@@ -9,6 +9,7 @@ object Dependencies {
   val akkaHttpVersion = "10.1.11"
   val akkaStreamVersion = "2.5.26"
   val jsonVersion = "10.1.7"
+  val circeVersion = "0.12.3"
 
   val scalactic = "org.scalactic" %% "scalactic" % scalatestVersion
   val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion
@@ -21,4 +22,7 @@ object Dependencies {
   val akkaHttp = "com.typesafe.akka" %% "akka-http"   % akkaHttpVersion
   val akkaStreams = "com.typesafe.akka" %% "akka-stream" % akkaStreamVersion
   val json = "com.typesafe.akka" %% "akka-http-spray-json" % jsonVersion
+  val circeCore = "io.circe" %% "circe-core" % circeVersion
+  val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
+  val circeParser = "io.circe" %% "circe-parser" % circeVersion
 }

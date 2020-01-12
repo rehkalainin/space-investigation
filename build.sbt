@@ -21,8 +21,11 @@ lazy val `space-investigation` = project.in(file("space-investigation"))
       postgresDriver,
       akkaHttp,
       akkaStreams,
-      json
-      // todo: add circe etc.
+      json,
+      circeCore,
+      circeGeneric,
+      circeParser
+
     )
   )
 

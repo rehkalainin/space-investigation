@@ -33,7 +33,8 @@ class StarDaoImpl(implicit val ec: ExecutionContext) extends StarDao {
 //    starDBIOAction.flatMap {
 //      case None => DBIO.successful(None)
 //      case Some(star) =>
-//        StarView(starId, star.name, star.characteristics, star.`type`)
+//        StarView.fromStar(star)
+//
 //      }
 //
 //  }
