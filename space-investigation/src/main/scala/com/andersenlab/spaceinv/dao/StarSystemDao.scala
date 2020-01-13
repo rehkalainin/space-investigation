@@ -4,14 +4,17 @@ import java.util.UUID
 
 import cats.data.NonEmptyList
 import com.andersenlab.spaceinv.api.modelView.{PlanetView, StarSystemView, StarView}
+import com.andersenlab.spaceinv.api.request.CreateStarSystemRequest
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
-import com.andersenlab.spaceinv.model.{PlanetTable, StarSystem, StarSystemTable, StarTable}
+import com.andersenlab.spaceinv.model._
 import slick.dbio.Effect
 import slick.sql.SqlAction
 
 import scala.concurrent.ExecutionContext
 
 trait StarSystemDao {
+  def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): DBIO[Int]
+
   def updateStarSystem(starSystem: StarSystem): DBIO[Int]
 
   def saveStarSystem(starSystem: StarSystem): DBIO[Int]
@@ -50,10 +53,7 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
   }
 
   override def listAll(): DBIO[List[StarSystem]] = {
-
     StarSystemTable.starSystem.to[List].result
-
-
   }
 
   override def saveStarSystem(starSystem: StarSystem): DBIO[Int] = {
@@ -63,4 +63,34 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
   override def updateStarSystem(starSystem: StarSystem): DBIO[Int] = {
     StarSystemTable.starSystem.filter(_.id === starSystem.id).update(starSystem)
   }
+
+  override def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): DBIO[Int] = {
+
+
+    val starSystemId = UUID.randomUUID()
+    val starSystemCreation = StarSystemTable.starSystem += StarSystem(starSystemId, detailStarSystem.name)
+
+    val starCreation = detailStarSystem.stars.map { starRequest =>
+      StarTable.star += Star(UUID.randomUUID(),
+        starRequest.name,
+        starSystemId,
+        starRequest.characteristics,
+        starRequest.`type`)
+    }
+
+    val planetCreation = detailStarSystem.planets.map { planetRequest =>
+      PlanetTable.planet += Planet(UUID.randomUUID(),
+        planetRequest.name,
+        planetRequest.coordinates,
+        starSystemId,
+        planetRequest.characteristics)
+    }
+
+    DBIO.seq(starSystemCreation,
+      starCreation,
+      planetCreation)
+      .transactionally
+  }
+
+
 }
