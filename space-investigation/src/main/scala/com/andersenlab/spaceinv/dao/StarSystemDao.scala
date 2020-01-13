@@ -3,12 +3,15 @@ package com.andersenlab.spaceinv.dao
 import java.util.UUID
 
 import cats.data.NonEmptyList
+import com.andersenlab
+import com.andersenlab.spaceinv
 import com.andersenlab.spaceinv.api.modelView.{PlanetView, StarSystemView, StarView}
 import com.andersenlab.spaceinv.api.request.CreateStarSystemRequest
+import com.andersenlab.spaceinv.dao
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 import com.andersenlab.spaceinv.model._
 import slick.dbio.Effect
-import slick.sql.SqlAction
+import slick.sql.{FixedSqlAction, SqlAction}
 
 import scala.concurrent.ExecutionContext
 
@@ -76,7 +79,7 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
         starSystemId,
         starRequest.characteristics,
         starRequest.`type`)
-    }
+    }.toList
 
     val planetCreation = detailStarSystem.planets.map { planetRequest =>
       PlanetTable.planet += Planet(UUID.randomUUID(),
@@ -84,12 +87,12 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
         planetRequest.coordinates,
         starSystemId,
         planetRequest.characteristics)
-    }
+    }.toList
 
-    DBIO.seq(starSystemCreation,
-      starCreation,
-      planetCreation)
+
+    DBIO.sequence(starCreation ++ planetCreation += starSystemCreation)
       .transactionally
+
   }
 
 
