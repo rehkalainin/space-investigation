@@ -90,7 +90,7 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
     }.toList
 
 
-    DBIO.sequence(starCreation ++ planetCreation += starSystemCreation)
+    DBIO.sequence(starCreation ++ planetCreation :+ starSystemCreation)
       .transactionally
 
   }
