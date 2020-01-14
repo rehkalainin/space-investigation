@@ -51,7 +51,7 @@ class StarSystemServiceImpl(db: Database,
 
   override def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): Future[Unit] = {
     db.run {
-      starSystemDao.saveDetailStarSystem(detailStarSystem).map(_ => ())
+      starSystemDao.saveDetailStarSystem(detailStarSystem)
     }
   }
 }

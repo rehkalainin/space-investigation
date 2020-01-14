@@ -3,20 +3,17 @@ package com.andersenlab.spaceinv.dao
 import java.util.UUID
 
 import cats.data.NonEmptyList
-import com.andersenlab
-import com.andersenlab.spaceinv
 import com.andersenlab.spaceinv.api.modelView.{PlanetView, StarSystemView, StarView}
 import com.andersenlab.spaceinv.api.request.CreateStarSystemRequest
-import com.andersenlab.spaceinv.dao
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 import com.andersenlab.spaceinv.model._
 import slick.dbio.Effect
-import slick.sql.{FixedSqlAction, SqlAction}
+import slick.sql.SqlAction
 
 import scala.concurrent.ExecutionContext
 
 trait StarSystemDao {
-  def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): DBIO[Int]
+  def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): DBIO[Unit]
 
   def updateStarSystem(starSystem: StarSystem): DBIO[Int]
 
@@ -67,7 +64,7 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
     StarSystemTable.starSystem.filter(_.id === starSystem.id).update(starSystem)
   }
 
-  override def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): DBIO[Int] = {
+  override def saveDetailStarSystem(detailStarSystem: CreateStarSystemRequest): DBIO[Unit] = {
 
 
     val starSystemId = UUID.randomUUID()
@@ -91,7 +88,7 @@ class StarSystemDaoImpl(implicit ec: ExecutionContext) extends StarSystemDao {
 
 
     DBIO.sequence(starCreation ++ planetCreation :+ starSystemCreation)
-      .transactionally
+      .transactionally.map(_ => ())
 
   }
 
