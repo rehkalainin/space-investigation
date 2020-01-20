@@ -23,9 +23,10 @@ trait StarService {
 class StarServiceImpl(db: Database,
                       starDao: StarDao)(implicit ec: ExecutionContext) extends StarService {
   override def findStarById(starId: UUID): Future[Option[StarView]] = {
-    db.run {
+    val starFut = db.run {
       starDao.findStarById(starId)
     }
+    starFut.map(_.map(starView => StarView.fromStar(starView)))
   }
 
   override def listAll(): Future[List[Star]] = {
@@ -35,14 +36,14 @@ class StarServiceImpl(db: Database,
   }
 
   override def save(star: Star): Future[Unit] = {
-    db.run{
-      starDao.saveStar(star).map(_=>())
+    db.run {
+      starDao.saveStar(star).map(_ => ())
     }
   }
 
   override def update(star: Star): Future[Unit] = {
-    db.run{
-      starDao.updateStar(star).map(_=>())
+    db.run {
+      starDao.updateStar(star).map(_ => ())
     }
   }
 }

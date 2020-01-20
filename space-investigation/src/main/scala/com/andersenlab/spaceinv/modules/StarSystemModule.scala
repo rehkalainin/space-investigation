@@ -9,5 +9,5 @@ import com.andersenlab.spaceinv.api.controller.StarSystemController
 object StarSystemModule {
   lazy val starSystemDao = new StarSystemDaoImpl
   lazy val starSystemService = new StarSystemServiceImpl(db, starSystemDao)
-  lazy val controller = new StarSystemController(starSystemService)
+  lazy val starSystemController = new StarSystemController(starSystemService)
 }

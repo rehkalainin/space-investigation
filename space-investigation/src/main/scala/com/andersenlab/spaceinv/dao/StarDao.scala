@@ -5,13 +5,14 @@ import java.util.UUID
 import com.andersenlab.spaceinv.api.modelView.StarView
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 import com.andersenlab.spaceinv.model.{Star, StarTable}
-import slick.dbio.DBIO
+import slick.dbio.{DBIO, Effect}
+import slick.sql.SqlAction
 
 import scala.concurrent.ExecutionContext
 
 
 trait StarDao {
-  def findStarById(starId: UUID): DBIO[Option[StarView]]
+  def findStarById(starId: UUID): DBIO[Option[Star]]
 
   def listAll(): DBIO[List[Star]]
 
@@ -23,21 +24,12 @@ trait StarDao {
 
 class StarDaoImpl(implicit val ec: ExecutionContext) extends StarDao {
 
-  override def findStarById(starId: UUID): DBIO[Option[StarView]] = ???
-//  {
-//    val starDBIOAction: SqlAction[Option[Star], NoStream, Effect.Read] = StarTable
-//      .star
-//      .filter(_.id === starId.bind)
-//      .result.headOption
-//
-//    starDBIOAction.flatMap {
-//      case None => DBIO.successful(None)
-//      case Some(star) =>
-//        StarView.fromStar(star)
-//
-//      }
-//
-//  }
+  override def findStarById(starId: UUID): DBIO[Option[Star]] = {
+    StarTable
+      .star
+      .filter(_.id === starId.bind)
+      .result.headOption
+  }
 
   override def listAll(): DBIO[List[Star]] = {
     StarTable.star.to[List].result
