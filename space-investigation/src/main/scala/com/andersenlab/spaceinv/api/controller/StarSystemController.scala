@@ -7,8 +7,8 @@ import com.andersenlab.spaceinv.api.request.CreateStarSystemRequest
 import com.andersenlab.spaceinv.api.service.StarSystemService
 import com.andersenlab.spaceinv.model.StarSystem
 import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
-
-import scala.concurrent.ExecutionContext.Implicits.global
+import io.circe.generic.auto._
+import io.circe.syntax._
 
 
 class StarSystemController(starSystemService: StarSystemService) extends ControllerBase {

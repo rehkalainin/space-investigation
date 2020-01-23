@@ -25,7 +25,9 @@ lazy val `space-investigation` = project.in(file("space-investigation"))
       circeCore,
       circeGeneric,
       circeParser,
-      mockito
+      mockito,
+      akkaHttpCirce,
+      circeJava
     )
   )
 

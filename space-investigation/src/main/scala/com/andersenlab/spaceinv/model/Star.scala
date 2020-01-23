@@ -13,14 +13,14 @@ case class Star(id: UUID,
                 name: String,
                 starSystemId: UUID,
                 characteristics: PhysicalCharacteristics,
-               `type`: StarType.StarType)
+               `type`: String)
 
 class StarTable (tag:Tag) extends Table[Star](tag, "STAR") with PhysicalCharacteristicsColumns {
   def id = column[UUID]("STAR_ID", O.PrimaryKey)
   def name = column[String]("STAR_NAME")
   def starSystemId = column[UUID]("STARSYSTEM_ID")
 
-  def `type` = column[StarType.StarType]("STAR_TYPE")
+  def `type` = column[String]("STAR_TYPE")
 
   def star = foreignKey("STAR_FK", starSystemId, StarSystemTable.starSystem)(_.id)
 

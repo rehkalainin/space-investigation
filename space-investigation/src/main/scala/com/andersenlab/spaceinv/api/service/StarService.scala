@@ -24,10 +24,9 @@ class StarServiceImpl(db: Database,
                       starDao: StarDao)(implicit ec: ExecutionContext) extends StarService {
 
   override def findStarById(starId: UUID): Future[Option[StarView]] = {
-    val starFut = db.run {
-      starDao.findStarById(starId)
+    db.run {
+      starDao.findStarById(starId).map(_.map(StarView.fromStar))
     }
-    starFut.map(_.map(starView => StarView.fromStar(starView)))
   }
 
   override def listAll(): Future[List[Star]] = {
