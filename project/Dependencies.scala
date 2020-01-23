@@ -10,9 +10,11 @@ object Dependencies {
   val akkaStreamVersion = "2.5.26"
   val jsonVersion = "10.1.7"
   val circeVersion = "0.12.3"
+  val mockitoVersion = "1.0.0"
 
   val scalactic = "org.scalactic" %% "scalactic" % scalatestVersion
   val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion
+  val mockito = "org.mockito" %% "mockito-scala" % mockitoVersion
 
   val catsCore = "org.typelevel" %% "cats-core" % catsVersion
   val slick = "com.typesafe.slick" %% "slick" % slickVerion
@@ -25,4 +27,5 @@ object Dependencies {
   val circeCore = "io.circe" %% "circe-core" % circeVersion
   val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
   val circeParser = "io.circe" %% "circe-parser" % circeVersion
+
 }

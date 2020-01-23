@@ -2,11 +2,9 @@ package com.andersenlab.spaceinv.dao
 
 import java.util.UUID
 
-import com.andersenlab.spaceinv.api.modelView.StarView
 import com.andersenlab.spaceinv.dao.ExtPostgresProfile.api._
 import com.andersenlab.spaceinv.model.{Star, StarTable}
-import slick.dbio.{DBIO, Effect}
-import slick.sql.SqlAction
+import slick.dbio.DBIO
 
 import scala.concurrent.ExecutionContext
 

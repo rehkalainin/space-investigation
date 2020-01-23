@@ -22,6 +22,7 @@ trait StarService {
 
 class StarServiceImpl(db: Database,
                       starDao: StarDao)(implicit ec: ExecutionContext) extends StarService {
+
   override def findStarById(starId: UUID): Future[Option[StarView]] = {
     val starFut = db.run {
       starDao.findStarById(starId)

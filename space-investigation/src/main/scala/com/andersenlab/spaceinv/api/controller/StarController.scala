@@ -6,7 +6,9 @@ import akka.http.scaladsl.server.Route
 import com.andersenlab.spaceinv.api.service.StarService
 import com.andersenlab.spaceinv.model.Star
 
-class StarController(starService: StarService) extends ControllerBase {
+import scala.concurrent.ExecutionContext
+
+class StarController(starService: StarService)(implicit val ec: ExecutionContext) extends ControllerBase {
 
   override def route: Route = {
     apiV1 {

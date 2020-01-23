@@ -6,10 +6,12 @@ import akka.http.scaladsl.server.Route
 import com.andersenlab.spaceinv.api.request.CreateStarSystemRequest
 import com.andersenlab.spaceinv.api.service.StarSystemService
 import com.andersenlab.spaceinv.model.StarSystem
+import de.heikoseeberger.akkahttpcirce.FailFastCirceSupport._
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 
 class StarSystemController(starSystemService: StarSystemService) extends ControllerBase {
-
 
 
   def route: Route = {
@@ -27,8 +29,8 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
           saveStarSystemRoute() ~
             updateStarSystemRoute()
         }
-      } ~ pathPrefix("new_starsystem"){
-        pathEndOrSingleSlash{
+      } ~ pathPrefix("new_starsystem") {
+        pathEndOrSingleSlash {
           saveFullStarSystemRoute()
         }
       }
@@ -73,10 +75,11 @@ class StarSystemController(starSystemService: StarSystemService) extends Control
       }
     }
   }
+
   def saveFullStarSystemRoute(): Route = {
     post {
-      entity(as[CreateStarSystemRequest]){ request =>
-        onSuccess(starSystemService.saveDetailStarSystem(request)){
+      entity(as[CreateStarSystemRequest]) { request =>
+        onSuccess(starSystemService.saveDetailStarSystem(request)) {
           complete("created detail starsystem")
         }
       }

@@ -24,8 +24,8 @@ lazy val `space-investigation` = project.in(file("space-investigation"))
       json,
       circeCore,
       circeGeneric,
-      circeParser
-
+      circeParser,
+      mockito
     )
   )
 
