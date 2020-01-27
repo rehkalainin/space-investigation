@@ -16,7 +16,7 @@ object Dependencies {
 
   val scalactic = "org.scalactic" %% "scalactic" % scalatestVersion
   val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion
-  val mockito = "org.mockito" %% "mockito-scala" % mockitoVersion
+  val mockito = "org.scalamock" %% "scalamock" % mockitoVersion % Test
 
   val catsCore = "org.typelevel" %% "cats-core" % catsVersion
   val slick = "com.typesafe.slick" %% "slick" % slickVerion
