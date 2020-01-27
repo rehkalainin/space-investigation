@@ -32,10 +32,10 @@ object DbSetup {
 
 
       StarTable.star ++= Seq(
-        Star(UUID.randomUUID(), "Solar", STARSYSTEMID_SOLAR, PhysicalCharacteristics(Mass(2000), Radius(10000), Coordinates(2.1, 2.2, 2.3)), StarType.LikeSun.toString),
-        Star(UUID.randomUUID(), "SiriusA", STARSYSTEMID_SIRIUS, PhysicalCharacteristics(Mass(4000), Radius(15000), Coordinates(3.1, 4.2, 5.3)), StarType.LikeSun.toString),
-        Star(UUID.randomUUID(), "SiriusB", STARSYSTEMID_SIRIUS, PhysicalCharacteristics(Mass(5000), Radius(20000), Coordinates(4.1, 5.2, 6.3)), StarType.LikeSun.toString),
-        Star(UUID.randomUUID(), "AlfaA", STARSYSTEMID_ALFACENTAVRA, PhysicalCharacteristics(Mass(7000), Radius(80000), Coordinates(5.1, 7.2, 7.3)), StarType.LikeSun.toString),
+        Star(UUID.randomUUID(), "Solar", STARSYSTEMID_SOLAR, PhysicalCharacteristics(Mass(2000), Radius(10000), Coordinates(2.1, 2.2, 2.3)), StarType.LikeSun),
+        Star(UUID.randomUUID(), "SiriusA", STARSYSTEMID_SIRIUS, PhysicalCharacteristics(Mass(4000), Radius(15000), Coordinates(3.1, 4.2, 5.3)), StarType.LikeSun),
+        Star(UUID.randomUUID(), "SiriusB", STARSYSTEMID_SIRIUS, PhysicalCharacteristics(Mass(5000), Radius(20000), Coordinates(4.1, 5.2, 6.3)), StarType.LikeSun),
+        Star(UUID.randomUUID(), "AlfaA", STARSYSTEMID_ALFACENTAVRA, PhysicalCharacteristics(Mass(7000), Radius(80000), Coordinates(5.1, 7.2, 7.3)), StarType.LikeSun),
 
       )
     )

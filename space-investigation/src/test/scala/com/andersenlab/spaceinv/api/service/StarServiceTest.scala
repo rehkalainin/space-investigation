@@ -36,10 +36,8 @@ class StarServiceTest extends WordSpec
 
     import scala.concurrent.ExecutionContext.Implicits.global
 
-
     val db = Mockito.mock(classOf[Database])
     val starDao = mock[StarDao]
     val starService = new StarServiceImpl(db, starDao)
   }
-
 }

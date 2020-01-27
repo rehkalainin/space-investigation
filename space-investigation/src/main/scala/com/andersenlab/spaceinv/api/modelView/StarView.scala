@@ -10,6 +10,6 @@ case class StarView(id: UUID,
 
 object StarView {
   def fromStar(star: Star): StarView = {
-    StarView(star.id, star.name, star.characteristics, StarType.withName(star.`type`))
+    StarView(star.id, star.name, star.characteristics, star.`type`)
   }
 }

@@ -30,5 +30,6 @@ object Dependencies {
   val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
   val circeParser = "io.circe" %% "circe-parser" % circeVersion
   val circeJava = "io.circe" %% "circe-java8" %  circeJavaVersion
+  val mock = "org.scalamock" %% "scalamock" % "4.4.0" % Test
   val akkaHttpCirce = "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirceVersion
 }
