@@ -3,21 +3,18 @@ import Dependencies._
 lazy val commonSettings = Seq(
   version := "0.1",
   scalaVersion := "2.12.10",
-  libraryDependencies ++= Seq(
-    scalatest % "test",
-    scalactic % "test",
-    catsCore
-  ),
   scalacOptions += "-Ypartial-unification"
 )
 
 lazy val `space-investigation` = project.in(file("space-investigation"))
-  .settings(commonSettings)
   .settings(
     libraryDependencies ++= Seq(
+      scalatest % "test",
+      scalactic % "test",
       slick,
       slickHikari,
       slf4jNop,
+      catsCore,
       postgresDriver,
       akkaHttp,
       akkaStreams,
@@ -28,7 +25,8 @@ lazy val `space-investigation` = project.in(file("space-investigation"))
       mockito,
       akkaHttpCirce,
       circeJava,
-      mock
+      mock,
+      testconteinersPostgresql
     )
   )
 

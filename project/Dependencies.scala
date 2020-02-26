@@ -13,10 +13,12 @@ object Dependencies {
   val circeJavaVersion = "0.11.1"
   val mockitoVersion = "1.0.0"
   val akkaHttpCirceVersion = "1.27.0"
+  val testcontainersScalaVersion = "0.35.0"
 
   val scalactic = "org.scalactic" %% "scalactic" % scalatestVersion
   val scalatest = "org.scalatest" %% "scalatest" % scalatestVersion
   val mockito = "org.scalamock" %% "scalamock" % mockitoVersion % Test
+  val testconteinersPostgresql = "com.dimafeng" %% "testcontainers-scala-postgresql" % testcontainersScalaVersion % "test"
 
   val catsCore = "org.typelevel" %% "cats-core" % catsVersion
   val slick = "com.typesafe.slick" %% "slick" % slickVerion
@@ -26,10 +28,10 @@ object Dependencies {
   val akkaHttp = "com.typesafe.akka" %% "akka-http"   % akkaHttpVersion
   val akkaStreams = "com.typesafe.akka" %% "akka-stream" % akkaStreamVersion
   val json = "com.typesafe.akka" %% "akka-http-spray-json" % jsonVersion
+  val akkaHttpCirce = "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirceVersion
   val circeCore = "io.circe" %% "circe-core" % circeVersion
   val circeGeneric = "io.circe" %% "circe-generic" % circeVersion
   val circeParser = "io.circe" %% "circe-parser" % circeVersion
   val circeJava = "io.circe" %% "circe-java8" %  circeJavaVersion
   val mock = "org.scalamock" %% "scalamock" % "4.4.0" % Test
-  val akkaHttpCirce = "de.heikoseeberger" %% "akka-http-circe" % akkaHttpCirceVersion
 }

@@ -12,7 +12,6 @@ import io.circe.generic.auto._
 
 class StarSystemController(starSystemService: StarSystemService) extends ControllerBase {
 
-
   def route: Route = {
     apiV1 {
       pathPrefix("systems") {
